@@ -1,0 +1,71 @@
+<mvc:View 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m" 
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form" 
+    xmlns:core="sap.ui.core" 
+    xmlns:html="http://www.w3.org/1999/xhtml" 
+    controllerName="serviacero.custom.plugins.zpluginGetCaracteristicasLote.zpluginGetCaracteristicasLote.controller.MainView" 
+    width="100%" 
+    height="100%">
+		
+        <Panel
+            id="idPluginPanel"
+            width="98%"
+            height="100%"
+            expandable="false"
+            expanded="false"
+            accessibleRole="Region"
+            backgroundDesign="Transparent"
+            class="sapUiNoContentPadding">
+            <MessageStrip text="{i18n>scannerReady}" type="Information" showIcon="true"
+                customIcon="sap-icon://bar-code" class="sapUiSmallMarginTop sapUiSmallMarginBeginEnd" />
+            <Label text="Barcode:" />
+            <HBox renderType="Bare" width="100%" >
+                <Input id="scanInput" submit=".onBarcodeScan" class="sapUiTinyMarginEnd" change=".onBarcodeScan" />
+                <Button id="clearButton" text="{i18n>clear}" press=".onPressClear"/>
+                <!-- boton de prueba -->
+                <Button id="eButton" text="{i18n>exec}" press=".onPressApi"/>
+            </HBox>
+            <Table busyIndicatorDelay="5" id="batchCharcTable" items="{/ITEMS}"
+                growing="true" growingThreshold="500">
+                <headerToolbar>
+                    <Toolbar>
+                        <Title text="{i18n>Items} ({= ${/ITEMS}.length})" />
+                        <ToolbarSpacer />
+                        <Text text="{i18n>productionDate}" />
+                        <Text id="productionDate" />
+                    </Toolbar>
+                </headerToolbar>
+                <columns>
+                    <Column width="" hAlign="Left" vAlign="Middle">
+                        <Text text="{i18n>Attribute}" />
+                    </Column>
+                    <Column width="" hAlign="Left" vAlign="Middle">
+                        <Text text="{i18n>Description}" />
+                    </Column>
+                    <Column width="" hAlign="Left" vAlign="Middle">
+                        <Text text="{i18n>Value}" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem vAlign="Middle">
+                        <cells>
+                            <Text text="{charcName}" />
+                            <Text text="{charcDesc}" />
+                            <Text text="{
+                                parts:[
+                                    {
+                                        path: 'batchCharcValues'
+                                    }
+                            ], 
+                        formatter: '.formatter.getBatchValue'}" />
+                        </cells>
+                    </ColumnListItem>
+
+                </items>
+            </Table>
+        </Panel>		
+        
+  
+</mvc:View>

@@ -1,0 +1,15 @@
+{
+	"components": [
+		{
+			"id": "zpluginGetCaracteristicasLote",
+			"type": "VIEW_PLUGIN",
+			"allowMultipleInstances": false,
+			"name": "serviacero.custom.plugins.zpluginGetCaracteristicasLote.zpluginGetCaracteristicasLote",
+			"propertyEditor": "serviacero.custom.plugins.zpluginGetCaracteristicasLote.zpluginGetCaracteristicasLote.builder.PropertyEditor",
+			"i18n": "serviacero.custom.plugins.zpluginGetCaracteristicasLote.zpluginGetCaracteristicasLote.i18n.i18n",
+            "productionProcessEnabled": true,
+           "productionProcessTitle": "zpluginGetCaracteristicasLote",
+			"supportedPodTypes": ["WORK_CENTER","OPERATION","ORDER","OTHER"]
+		}   
+	]
+}

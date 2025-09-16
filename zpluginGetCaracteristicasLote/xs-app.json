@@ -1,0 +1,20 @@
+{
+  "welcomeFile": "/zpluginGetCaracteristicasLote/index.html",
+  "authenticationMethod": "none",
+  "logout": {
+    "logoutEndpoint": "/do/logout"
+  },
+  "routes": [
+    {
+      "source": "^/zpluginGetCaracteristicasLote/(.*)$",
+      "target": "$1",
+      "localDir": "webapp"
+    },
+    {
+      "source": "^/sapApi/(.*)$",
+      "target": "$1",
+      "destination": "SAP_API_TST",
+      "authenticationType": "xsuaa"
+    }
+  ]
+}
