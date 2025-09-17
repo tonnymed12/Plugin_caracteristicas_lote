@@ -9,6 +9,9 @@ sap.ui.define([
     "use strict";
 
     return Controller.extend("serviacero.custom.plugins.zpluginGetCaracteristicasLote.zpluginGetCaracteristicasLote.controller.MainView", {
+        Commons: Commons,
+        ApiPaths: ApiPaths,
+        formatter: formatter,
         onInit: function () {
 
         },
@@ -21,7 +24,7 @@ sap.ui.define([
         onBarcodeScan: function (oEvent) {
             const oView = this.getView(),
                 oTable = oView.byId("batchCharcTable");
-            oTable.setBusy(true);
+                oTable.setBusy(true);
             setTimeout(function () {
                 const oSource = oEvent.getSource(),
                     oBatch = String(oSource.getValue()).split("?")[1],
@@ -47,22 +50,7 @@ sap.ui.define([
                     oTable.setBusy(false);
             }.bind(this), 20);
         },
-// PROBAR API ------------------------------------------------------------------------------------
-        onPressApi: function (oEvent) {  //funcion de prueba 
-            const oView = this.getView();
-            const oSource = oEvent.getSource(),
-                Iplant = "5510",
-                oSapApi = this.getOwnerComponent().getManifestEntry("/sap.app/dataSources/sapApi-RestSource/uri"),
-                oParams = {
-                    plant: Iplant
-                };
 
-            this.Commons.consumeApi(oSapApi + this.ApiPaths.WORKCENTERS, "GET", oParams, function (oRes) {
-                oTable.setModel(new JSONModel({ ITEMS: oRes.customValues }));
-                oView.byId("productionDate").setText(oRes.productionDate);
-                oTable.setBusy(false);
-            });
-        },
 
         onPressClear: function () {
             const oView = this.getView(),

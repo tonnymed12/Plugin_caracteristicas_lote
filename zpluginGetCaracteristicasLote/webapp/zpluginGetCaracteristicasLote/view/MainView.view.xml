@@ -24,8 +24,6 @@
             <HBox renderType="Bare" width="100%" >
                 <Input id="scanInput" submit=".onBarcodeScan" class="sapUiTinyMarginEnd" change=".onBarcodeScan" />
                 <Button id="clearButton" text="{i18n>clear}" press=".onPressClear"/>
-                <!-- boton de prueba -->
-                <Button id="eButton" text="{i18n>exec}" press=".onPressApi"/>
             </HBox>
             <Table busyIndicatorDelay="5" id="batchCharcTable" items="{/ITEMS}"
                 growing="true" growingThreshold="500">
