@@ -27,8 +27,8 @@ sap.ui.define([
                 oTable.setBusy(true);
             setTimeout(function () {
                 const oSource = oEvent.getSource(),
-                    oBatch = String(oSource.getValue()).split("?")[1],
-                    oMaterial = String(oSource.getValue()).split("?")[0],
+                    oBatch = String(oSource.getValue()).split("!")[1],
+                    oMaterial = String(oSource.getValue()).split("!")[0],
                     oPODParams = this.Commons.getPODParams(this.getOwnerComponent()),
                     oSapApi = this.getOwnerComponent().getManifestEntry("/sap.app/dataSources/sapApi-RestSource/uri"),
                     oParams = {
