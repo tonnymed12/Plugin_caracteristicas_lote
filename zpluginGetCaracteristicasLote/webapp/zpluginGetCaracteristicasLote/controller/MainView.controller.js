@@ -38,8 +38,8 @@ sap.ui.define([
                     };
                 if (oMaterial != "")
                     this.Commons.consumeApi(oSapApi + this.ApiPaths.BATCH_CHARS, "GET", oParams, function (oRes) {
-                        oTable.setModel(new JSONModel({ ITEMS: oRes.batchCharacteristics }));
-                        oView.byId("productionDate").setText(oRes.productionDate);
+                        oTable.setModel(new JSONModel({ ITEMS: (oRes && oRes.batchCharacteristics) || [] }));
+                        oView.byId("productionDate").setText((oRes && oRes.productionDate) || "");
                         oTable.setBusy(false);
                     }.bind(this),
                         function (oRes) {

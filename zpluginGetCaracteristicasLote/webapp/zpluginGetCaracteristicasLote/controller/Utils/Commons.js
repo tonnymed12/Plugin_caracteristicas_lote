@@ -48,12 +48,12 @@ sap.ui.define([
                         }
                     }
 
-                    let oMessage;
-                    if (typeof data == "object") {
-                        oMessage = data.responseJSON.message != undefined ? data.responseJSON.message : data.responseJSON.displayMessage;
-                    } else if (typeof data == "text") {
-                        oMessage = data.responseText;
-                    }
+                    // responseJSON no existe cuando el error no es JSON (404 vacío, HTML, red caída)
+                    const oJson = data && data.responseJSON;
+                    const oMessage = (oJson && (oJson.message || oJson.displayMessage))
+                        || (data && data.responseText)
+                        || (data && data.statusText)
+                        || "Error al consumir el servicio";
                     MessageBox.error(oMessage);
 
                     if (fErrCallback)
@@ -106,7 +106,7 @@ sap.ui.define([
              * @param {function} fCallback Function to call on generic dialog
              */
             oThis.loadFragment({
-                name: "forza.custom.plugins.customGoodReceiptPlugin.customGoodReceiptPlugin.fragment.GenericDialog"
+                name: "serviacero.custom.plugins.customGoodReceiptPlugin.customGoodReceiptPlugin.fragment.GenericDialog"
             }).then(function (oDialog) {
                 fCallback(oDialog);
                 if (oModel)
